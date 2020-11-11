@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+    - master
+name: Build and deploy .NET Core app to Linux WebApp
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    
+    - name: Install dependencies
+      run: dotnet restore sampledotnetcorerazorproject
+    
+    - name: Build
+      run: dotnet build sampledotnetcorerazorproject --configuration Release --no-restore
+    
+    - name: Publish artifact
+      run: dotnet publish sampledotnetcorerazorproject --configuration Release --no-build --output sampledotnetcorerazorproject/publish
+    
+
+    - name: Deploy to Azure WebApp
+      uses: azure/webapps-deploy@v1
+      with:
+        app-name: LinuxNinadBugbash
+        package: sampledotnetcorerazorproject/publish
+
