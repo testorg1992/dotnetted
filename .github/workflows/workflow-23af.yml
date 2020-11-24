@@ -1,0 +1,43 @@
+name: Deploy ASP.NET Core Web Application to ashwin-win-Final
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET Core SDK 5.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+
+    - name: Restore packages
+      run: dotnet restore sampledotnetcorerazorproject
+    
+    - name: Build app
+      run: dotnet build sampledotnetcorerazorproject --configuration Release --no-restore
+
+    - name: Test app
+      run: dotnet test sampledotnetcorerazorproject --no-build
+    
+    - name: Publish app for deploy
+      run: dotnet publish sampledotnetcorerazorproject --configuration Release --no-build --output ./published
+    
+    - name: Deploy to Azure WebApp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ashwin-win-Final
+        package: ./published
+        publish-profile: ${{secrets.AZURE_CREDENTIALS_GITHUB_SECRET_23af}}
+
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: webapp
+        path: ./published
