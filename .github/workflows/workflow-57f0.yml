@@ -1,4 +1,4 @@
-name: Build and deploy .NET Core app to Linux WebApp LinuxNinadBugbash
+name: Build and deploy .NET Core app to Linux WebApp
 on:
   push:
     branches:
