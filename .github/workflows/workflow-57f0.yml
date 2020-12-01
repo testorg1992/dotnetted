@@ -9,7 +9,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: sampledotnetcorerazorproject/publish
   AZURE_WEBAPP_PUBLISH_PROFILE: ${{secrets.AZURE_CREDENTIALS_GITHUB_SECRET_57f0}}
   CONFIGURATION: Release
-  DOTNET_CORE_VERSION: 3.1.x
+  DOTNET_CORE_VERSION: 5.0.x
   WORKING_DIRECTORY: sampledotnetcorerazorproject
 
 jobs:
