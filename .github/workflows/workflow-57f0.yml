@@ -32,8 +32,8 @@ jobs:
     - name: Install dependencies test
       run: dotnet restore ${{ env.WORKING_DIRECTORY }}
     
-    - name: Build 2
-      run: dotnet build ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.DOTNET_CORE_VERSION }} --no-restore
+    - name: Build 3
+      run: dotnet build ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --no-restore
     
     - name: Publish artifact
       run: dotnet publish ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
