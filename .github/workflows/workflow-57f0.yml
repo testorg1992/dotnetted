@@ -29,10 +29,10 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
     
-    - name: Install dependencies test
+    - name: Install dependencies
       run: dotnet restore ${{ env.WORKING_DIRECTORY }}
     
-    - name: Build 3
+    - name: Build with Release
       run: dotnet build ${{ env.WORKING_DIRECTORY }} --configuration ${{ env.CONFIGURATION }} --no-restore
     
     - name: Publish artifact
