@@ -6,7 +6,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: ashwin-win-Final
-  AZURE_WEBAPP_SLOT_NAME: staging 
+  AZURE_WEBAPP_SLOT_NAME: ashwin-win-final-staging 
   AZURE_WEBAPP_PACKAGE_PATH: sampledotnetcorerazorproject/publish
   AZURE_WEBAPP_PUBLISH_PROFILE: ${{secrets.ashwinwinfinal_staging_0e2e}}
   CONFIGURATION: Release
